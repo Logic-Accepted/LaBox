@@ -41,10 +41,10 @@ tags:
 # 改造之后
 ## 最初的宁静
 `8-23`我收到了一条短信，里面说为满足“多终端上网需求”而进行升级改造。
-![收到的短信](campusnetwork/message.jpg)  
+![收到的短信](../images/campusnetwork/message.jpg)  
 起初我猜测是他可能会放弃一人一号的神秘政策转而使用标准的`PPPoE`认证，毕竟目前我校移动地位每况愈下，有的宿舍已经可以安装联通的宽带了，事实证明确实没有人会跟钱过不去。  
 如前所述，升级完成之后认证方式换成了`Drcom`的`Portal`方式认证。
-![认证页面](campusnetwork/portal.png)  
+![认证页面](../images/campusnetwork/portal.png)  
 直接登录后会跳转到学校的官网，并且也并不能“多终端”同时上网。  
 我在电脑上进行登录，然后开启了系统自带的热点，测试了大约半小时并没有出现掉线的情况。此时我猜测新的系统并没有加入任何的分享检测措施，于是就直接把路由器的`WAN`口调整成`DHCP`模式，然后连接路由器的设备打开认证页面连接一下就可以正常用了。 
 ## 不会缺席的检测
@@ -61,10 +61,10 @@ tags:
 > 测试网站为 [ua.233996.xyz](ua.233996.xyz)  
 > 注意使用时关闭代理并且确认浏览器在以`HTTP`协议打开这个网站  
 
-![XMURP的效果](campusnetwork/xmurp.png)
+![XMURP的效果](../images/campusnetwork/xmurp.png)
 但很可惜，在我校这样程度的伪装仍不能躲避检测。我只得编译了含有`UA2F`的`LEDE`固件继续尝试。幸运的是这次终于成功了，我校并未部署什么超出上文提到的`SunBK201`的文章中列出的检测方案。  
 所谓`UA2F`，顾名思义就是把`User-Agent`全都换成`F`。  
-![UA2F的效果](campusnetwork/ua2f.png)  
+![UA2F的效果](../images/campusnetwork/ua2f.png)  
 这个插件性能很好(至少比`Provixy`高到不知道哪里去了)，并且可以修改所有的`HTTP`流量的`User-Agent`。缺点就是用起来比较麻烦，需要自己编译。  
 项目地址在[这里](https://github.com/Zxilly/UA2F/)，而[这里](https://learningman.top/archives/304)有作者所写的详细介绍。  
 使用这个软件，加之`NTP`服务器劫持和`TTL`统一，目前就不会被检测到了，并且正常运行到了今天。  
