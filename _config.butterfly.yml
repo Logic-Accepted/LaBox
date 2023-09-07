@@ -442,16 +442,20 @@ gitalk:
   admin:
   option:
 
-# valine
-# https://valine.js.org
+# Valine
+# For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  appId: # leancloud application app id
-  appKey: # leancloud application app key
-  avatar: monsterid # gravatar style https://valine.js.org/#/avatar
-  serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  bg: # valine background
-  visitor: false
-  option:
+  enable: true
+  appId: 95Esmwj79M4vwR6rJUcg7F7l-gzGzoHsz # your leancloud application appid
+  appKey: lYKQ8TYpa3JkMs5v1eyTsXHu # your leancloud application appkey
+  serverURLs: # When the custom domain name is enabled, fill it in here
+  placeholder: Just go go # comment box placeholder
+  avatar: mm # gravatar style
+  meta: [nick, mail, link] # Custom comment header
+  pageSize: 10 # pagination size
+  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
+  comment_count: true # If false, comment count will only be displayed in post page, not in home page
+  recordIP: false # Whether to record the commenter IP
 
 # waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
