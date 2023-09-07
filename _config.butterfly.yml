@@ -445,9 +445,9 @@ gitalk:
 # Valine
 # For more information: https://valine.js.org, https://github.com/xCss/Valine
 valine:
-  enable: true
-  appId: 95Esmwj79M4vwR6rJUcg7F7l-gzGzoHsz # your leancloud application appid
-  appKey: lYKQ8TYpa3JkMs5v1eyTsXHu # your leancloud application appkey
+  enable: false
+  appId:  # your leancloud application appid
+  appKey:  # your leancloud application appkey
   serverURLs: # When the custom domain name is enabled, fill it in here
   placeholder: Just go go # comment box placeholder
   avatar: mm # gravatar style
