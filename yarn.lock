@@ -927,12 +927,6 @@ hexo-log@^4.0.1:
   dependencies:
     picocolors "^1.0.0"
 
-"hexo-next-valine@github:next-theme/hexo-next-valine":
-  version "2.1.0"
-  resolved "git+ssh://git@github.com/next-theme/hexo-next-valine.git#f96edab62f91f30f93b8e501402628858a7542f3"
-  dependencies:
-    "@next-theme/utils" "^1.1.0"
-
 hexo-pagination@3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/hexo-pagination/-/hexo-pagination-3.0.0.tgz"
