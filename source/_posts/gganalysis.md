@@ -1,8 +1,11 @@
 ---
 title: 使用 GGanalysis 对抽卡游戏进行简单概率计算
 abbrlink: 3c6020b2
+description: 算算你能不能抽到你推
 date: 2024-02-16 09:17:10
 tags:
+
+cover: ../images/gganalysis/firefly.jpg
 ---
 > 本文仅作经验分享用，不建议读者将之视为教程学习。  
 > 本文依照我自身的认知而作，描述方面可能出现错漏，敬请见谅。  
@@ -10,9 +13,9 @@ tags:
 > 项目地址：[https://github.com/OneBST/GGanalysis](https://github.com/OneBST/GGanalysis)  
 > 文档地址：[https://onebst.github.io/GGanalysis](https://onebst.github.io/GGanalysis)
 
-![流萤(崩坏：星穹铁道)](../images/gganalysis/firefly.jpg)
 # 背景
 随着星铁更新 2.0 版本，流萤圈粉无数，许多人也随之开始攒星琼。显然对于星铁这样的 GachaGame 来说，攒星琼意味着几乎不能获得新的角色，是很无聊的。此时群内自然发生了关于抽卡概率的讨论。因此昨天尝试了一下 GGanalysis 这个工具，感觉还是挺有趣的，在此分享使用经历。  
+![awake.gif](../images/gganalysis/awake.gif)
 # 使用
 >GGanalysis 是一个概率计算工具包，主要用于解决各类游戏抽卡概率计算问题。  
 
@@ -78,7 +81,7 @@ from matplotlib import pyplot as plt
 plt.fill_between(range(len(item_num_dist)), 0, item_num_dist[:], alpha=0.5, step='mid', edgecolor='none')
 plt.step(range(len(item_num_dist)), item_num_dist[:], where='mid')
 plt.savefig('kn1.png')
-```  
+```
 
 运行程序得到图片：
 ![kn1.png](../images/gganalysis/kn1.png)  

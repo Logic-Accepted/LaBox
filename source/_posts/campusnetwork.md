@@ -3,6 +3,7 @@ title: 一些校园网折腾经验分享
 abbrlink: 8a171742
 description: 给有限制的校园宽带安装路由器
 date: 2023-09-05 21:34:24
+cover: ../images/campusnetwork/portal.png
 tags:
 ---
 > 本文仅作经验分享用，不建议读者将之视为教程学习。除此之外，本文将保持更新。  
