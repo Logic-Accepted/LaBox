@@ -33,10 +33,10 @@ code_word_wrap: false
 # formal:
 #   icon: link || the description || color
 social:
-   fab fa-github: https://github.com/Logic_Accepted || Github || '#24292e'
+   fab fa-github: https://github.com/Logic-Accepted || Github || '#24292e'
    fas fa-envelope: mailto:2634038893@qq.com || Email || '#4a7dbe'
    fab fa-bilibili: https://space.bilibili.com/95429640 || Bilibili || '#66ccff'
-   fab fa-zhihu: https://www.zhihu.com/people/l-ac-15 || 知乎 || '#056DE8'
+   fab fa-zhihu: https://www.zhihu.com/people/brokenclouds03 || 知乎 || '#056DE8'
 
 # Image (圖片設置)
 # --------------------------------------
@@ -233,7 +233,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/Logic-Accepted
   card_announcement:
     enable: true
     content: 个人博客，随缘更新。
