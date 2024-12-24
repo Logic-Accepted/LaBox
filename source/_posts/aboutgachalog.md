@@ -33,14 +33,14 @@ PC：个人电脑，就是你的电脑。
 ![非小酋为PC提供的教程](../images/aboutgachalog/feixiaoqiuTutorial.png)  
 ### 方法一：使用脚本
 先打开原神游戏，打开抽卡记录页之后按Win+R,输入powershell并回车，然后在打开的powershell窗口中运行以下命令：
-```
+```powershell
 iex "&{$(irm https://tt.xianx.com.cn/link/ys/l.ps1)} china"
 ```
 脚本会自动把你想要的链接输出并放进你的剪切板，你可以直接粘贴出来。如此一来，把这个链接粘贴到任意抽卡分析程序里就可以了，比如非小酋。    
 ![方案一获得的抽卡链接](../images/aboutgachalog/gachaloglink1.png)  
 ### 方法二：在剪切板中提取
 非小酋还提供了另一种有趣的方案，先按Win+R,输入powershell并回车，然后在打开的powershell窗口中运行以下命令：
-```
+```powershell
 pause;$m=(((Get-Clipboard -TextFormatType Html) | sls "(https:/.+log)").Matches[0].Value);$m;Set-Clipboard -Value $m
 ```
 此时powershell会提示“按Enter继续”，我们不要按enter,打开游戏并打开抽卡记录页面，直接选中所有的抽卡记录，按Ctrl+C复制并Ctrl+V粘贴进powershell里：
@@ -52,23 +52,23 @@ pause;$m=(((Get-Clipboard -TextFormatType Html) | sls "(https:/.+log)").Matches[
 可能有的网友有疑虑：方法一给出的命令看起来非常像Steam假入库用到的命令（图源网络）：
 ![淘宝店提供的假入库方法](../images/aboutgachalog/fakelib.jpg)  
 确实，这两个操作的本质是类似的，都是下载一个ps1脚本文件并运行。我们来分析一下异同：
-```
+```powershell
 iex "&{$(irm https://tt.xianx.com.cn/link/ys/l.ps1)} china"
 ```
 这是用`irm`(`Invoke-RestMethod`)下载
 `https://tt.xianx.com.cn/link/ys/l.ps1`的内容作为一个字符串，然后`iex`(`Invoke-Expression`)把它当成powershell代码，然后加上参数`china`来运行它。
 而另一个假入库的命令：
-```
+```powershell
 irm ███████████.run|iex
 ```
 也是同理，通过`irm`下载某个网址的ps1文件，然后通过管道符`|`传递给`iex`来运行。  
 由此可见，关键问题就在于这个网址给出的程序是善是恶了。  
 我们可以通过`irm`来下载这个脚本并不运行它来检查，比如在powershell里运行这个：
-```
+```powershell
 irm https://tt.xianx.com.cn/link/ys/l.ps1
 ```
 他就会打印出这个用来获得原神抽卡链接的脚本到底干了些啥：
-```
+```powershell
 $logLocation = "%userprofile%\AppData\LocalLow\miHoYo\Genshin Impact\output_log.txt";
 $logLocationChina = "%userprofile%\AppData\LocalLow\miHoYo\$([char]0x539f)$([char]0x795e)\output_log.txt";
 
@@ -177,7 +177,7 @@ Write-Host "$([char]0x62bd)$([char]0x5361)$([char]0x94fe)$([char]0x63a5)$([char]
 总结来说，这个程序打开了原神的`log`日志，然后找到了缓存文件，最终从缓存文件中提取出了抽卡链接，并没有异常操作，是安全的。  
 而那个假入库的我也`irm`了一下，代码经过了混淆，我也看不懂，所以把网址涂抹掉了，建议大家也不要尝试。总而言之，遇到`iex`的情况都应该留心，可以把链接发给懂的人检查一下。  
 第二种方案很有趣，先来看命令：
-```
+```powershell
 pause;$m=(((Get-Clipboard -TextFormatType Html) | sls "(https:/.+log)").Matches[0].Value);$m;Set-Clipboard -Value $m
 ```
 这个命令先运行`pause`暂停住控制台，等待下一步输入。我们复制了抽卡信息给它之后它会通过`https:/`特征来提取出来抽卡链接并且塞回剪切板。  
@@ -205,11 +205,11 @@ pause;$m=(((Get-Clipboard -TextFormatType Html) | sls "(https:/.+log)").Matches[
 1
 ```
 实际上，这看似纯文本的信息里包含了不少元数据，我们可以通过这样的方案看到：先复制抽卡记录，然后用powershell运行
-```
+```powershell
 Get-Clipboard -TextFormatType Html | Out-File -FilePath "$env:TEMP\clipboard_content.html"
 ```
 这会把我们的剪切板里的内容以html的形式保存成一个html文件。我们再打开这个文件：
-```
+```powershell
 Start-Process "$env:TEMP\clipboard_content.html"
 ```
 就可以看到剪切板里实际的内容了,这其中就包括了我们需要的链接：
