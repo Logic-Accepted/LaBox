@@ -24,9 +24,12 @@ FX 层中，在`AFK`为`True`时，首先进入`Prepare AFK` 状态，这是一�
 而 Action 层中，虽然看起来很复杂，但实际 AFK 部分（整体下方的一条）流程与 FX 层中的内容基本上是完全一样的。本文我们不必去深入研究 AFK 动作的实现原理，只需了解其生效的流程即可，因此不再深入展开。  
 ![Action](../images/afktoggle/ac.png)  
 # 开始做
-我们的目的，是创建一个我们可以写的参数，比如`ForceAFK`，并通过 ma 做一个开关，来让他参与AFK动画层控制，同时不影响原本的AFK。思路是：在所有进入AFK的判断上，只要`AFK`或者`ForceAFK`有一个为`True`（对两者进行或运算），也就意味着要么客户端发起了AFK，要么我们手动打开了AFK，我们就让它进入AFK状态。在退出AFK的判断上，只有两个参数都为`False`（对两者进行与运算），也就是首先客户端不认为现在处于AFK状态，我们也没有手动打开AFK，才能退出。  
-Unity的动画控制器并没有什么方便的逻辑运算，我们可以用多个Transition实现或运算，用同一个Transition中写多个条件实现与运算。  
-我们在复制所有只需要判断 AFK = True 的 Transition，并把 Condition 里的`AFK` 参数改成我们的 `ForceAFK`，在所有需要判断 AFK = False 的 Transition 本身的Condition里添加一条 ForceAFK = False 的判断。此外的Transition我们不管，空的依然空，两者任意的依然两者任意。    
+我们的目的，是创建一个我们可以写的参数，比如`ForceAFK`，并通过 ma 做一个开关，来让他参与AFK动画层控制，同时不影响原本的AFK。  
+思路是：在所有进入AFK的判断上，只要`AFK`或者`ForceAFK`有一个为`True`（对两者进行或运算），也就意味着要么客户端发起了AFK，要么我们手动打开了AFK，我们就让它进入AFK状态。在退出AFK的判断上，只有两个参数都为`False`（对两者进行与运算），也就是首先客户端不认为现在处于AFK状态，我们也没有手动打开AFK，才能退出。Unity的动画控制器并没有什么方便的逻辑运算，我们可以用多个Transition实现或运算，用同一个Transition中写多个条件实现与运算。 
+做法是：我们先在 FX Action Locomotion 三层都创建一个 `ForceAFK` 参数，并把所有条件是 AFK = True 的 Transition复制一份，并把 Condition 里的`AFK` 参数改成我们的 `ForceAFK`，这样就实现了与运算。  
+然后再在所有条件为 AFK = False 的 Transition 本身的 Condition 里添加一条 ForceAFK = False 的判断来实现或运算。  
+此外的Transition我们不管，比如子状态机里面空条件的依然空，最后的`BlendOut AFK`这样允许 AFK = 任何值 的我们也不修改。 
+最后给 Locomotion 中进入下落状态的 Transition 添加一个 ForceAFK = False 的条件，来排除 AFK 时受重力影响下落。  
 ![修改后的FX](../images/afktoggle/fxf.png)
 ![修改后的子状态机](../images/afktoggle/btf.png)
 这样，我们的 ForceAFK 参数就完整的覆盖了整个 AFK 的进入和退出流程，这样终于可以用一个开关来控制是否进出 AFK 状态了。
