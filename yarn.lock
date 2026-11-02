@@ -822,6 +822,13 @@ hexo-butterfly-envelope@^1.0.15:
   dependencies:
     pug "^3.0.0"
 
+hexo-butterfly-navctrl@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmmirror.com/hexo-butterfly-navctrl/-/hexo-butterfly-navctrl-1.0.4.tgz"
+  integrity sha512-uLFDdx2vHVFwPV7kBB6Y6RHmg9RpwtBqH28iqHKi8brk7Mr1p/9AosjfWJ8NPnBJHMUVwOpG6IyFQ6EJJexIXg==
+  dependencies:
+    hexo-renderer-pug "^3.0.0"
+
 hexo-cli@^4.3.2:
   version "4.3.2"
   resolved "https://registry.npmmirror.com/hexo-cli/-/hexo-cli-4.3.2.tgz"
