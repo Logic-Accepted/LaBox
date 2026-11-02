@@ -42,7 +42,8 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: '🌙'
+favicon: 
+  - '/images/ico.png'
 
 # Avatar (頭像)
 avatar:
